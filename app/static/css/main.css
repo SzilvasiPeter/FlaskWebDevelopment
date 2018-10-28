@@ -20,3 +20,13 @@
 	font-style: oblique 10deg;
 	color: white;
 }
+
+.loginButton {
+	padding: 10px;
+	margin-right: 30px;
+	width: 200px;
+}
+
+.nav-link {
+	margin: 15px;
+}

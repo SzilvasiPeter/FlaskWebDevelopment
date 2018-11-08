@@ -43,19 +43,22 @@ body {
 
 .nav-link {
 	margin: 15px;
+	transition: 0.4s;
 }
 
 .LoginButton {
 	margin-right: 15px;
-}
-
-#myLogo {
-	width: 80px;
-	height: 80px;
 	transition: 0.4s;
 }
 
-#mainNav {
+.myLogo {
+	width: 80px;
+	height: 80px;
+	margin-left: 10px;
+	transition: 0.4s;
+}
+
+.mainNav {
   overflow: hidden;
   background-color: #f1f1f1;
   padding: 28px;

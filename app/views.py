@@ -20,9 +20,18 @@ posts = [
 ]
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-	return render_template("mainPage.html")
+	form1 = LoginForm()
+	if form1.validate_on_submit():
+		if form1.email.data == 'admin@gmail.com' and form1.password.data == 'password':
+			flash('You have been logged in!', 'success')
+			return redirect(url_for('index'))
+		else:
+			flash('Login Unsuccessfull. Please check username and password', 'danger')
+			return redirect(url_for('index'))
+	return render_template('mainPage.html', form=form1)
+	# return render_template("mainPage.html")
 
 @app.route('/dashboard/')
 def dashboard():
@@ -43,14 +52,3 @@ def register():
 		flash(f'Account created for {form.username.data}!', 'success')
 		return redirect(url_for('index'))
 	return render_template('register.html', title='Register', form=form)
-
-@app.route('/login/')
-def login():
-	form = LoginForm()
-	if form.validate_on_submit():
-		if form.email.data == 'admin@gmail.com' and form.password.data == 'password':
-			flash('You have been logged in!', 'success')
-			return redirect(url_for('index'))
-		else:
-			flash('Login Unsuccessfull. Please check username and password', 'danger')
-	return render_template('login.html', title='Login', form=form)

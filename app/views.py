@@ -19,18 +19,20 @@ posts = [
 	}
 ]
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
 	form1 = LoginForm()
+	displayModal = False
 	if form1.validate_on_submit():
 		if form1.email.data == 'admin@gmail.com' and form1.password.data == 'password':
 			flash('You have been logged in!', 'success')
-			return redirect(url_for('index'))
+			return render_template('mainPage.html', form1=form1, displayModal=displayModal)
 		else:
 			flash('Login Unsuccessfull. Please check username and password', 'danger')
-			return redirect(url_for('index'))
-	return render_template('mainPage.html', form=form1)
+			displayModal = True
+			return render_template('mainPage.html', form1=form1, displayModal=displayModal)
+	return render_template('mainPage.html', form1=form1)
 	# return render_template("mainPage.html")
 
 @app.route('/dashboard/')

@@ -40,7 +40,7 @@
         </li>
       </ul>
       <!-- Button trigger modal -->
-		<button type="button" class="LoginButton btn btn-md btn-outline-primary" data-toggle="modal" data-target="#LoginModal">
+		<button type="button" class="LoginButton btn btn-md btn-outline-primary" data-toggle="modal" data-target="#LoginModal" data-backdrop="static">
 		  Sing in
 		</button>
 	</div>
@@ -62,38 +62,39 @@
 		    <div class="modal-content">
 		      <div class="modal-body">
 		        <form method="POST" action="">
-			{{ form.hidden_tag() }}
+			{{ form1.hidden_tag() }}
 			<fieldset class="form-group">
+				<p>{{ displayModal }}</p>
 				<legend class="border-bottom mb-4">Sign In</legend>
 				<div class="form-group">
-					{{ form.email.label(class="form-control-label") }}
-					{% if form.email.errors%}
-						{{ form.email(class="form-control form-control-lg is-invalid") }}
+					{{ form1.email.label(class="form-control-label") }}
+					{% if form1.email.errors %}
+						{{ form1.email(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
-							{% for error in form.email.errors %}
+							{% for error in form1.email.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.email(class="form-control form-control-lg") }}
+						{{ form1.email(class="form-control form-control-lg") }}
 					{% endif %}
 				</div>
 				<div class="form-group">
-					{{ form.password.label(class="form-control-label") }}
-					{% if form.password.errors%}
-						{{ form.password(class="form-control form-control-lg is-invalid") }}
+					{{ form1.password.label(class="form-control-label") }}
+					{% if form1.password.errors %}
+						{{ form1.password(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
-							{% for error in form.password.errors %}
+							{% for error in form1.password.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.password(class="form-control form-control-lg") }}
+						{{ form1.password(class="form-control form-control-lg") }}
 					{% endif %}
 				</div>
 			</fieldset>
 			<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info")}}
+				{{ form1.submit(class="btn btn-outline-info")}}
 			</div>
 		</form>
 		      </div>

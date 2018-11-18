@@ -1,8 +1,9 @@
 from flask import Flask
-from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-# login_manager = LoginManager(app)
-
+app.config['SECRET_KEY'] = '63483d93977177f94771262462df57fb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
 
 from app import views

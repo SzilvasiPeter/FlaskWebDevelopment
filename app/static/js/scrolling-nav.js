@@ -8,6 +8,7 @@
       $('.myLogo').css({'height': '60px', 'width' : '60px', 'margin-left' : '5px'});
       $('.nav-link').css({'margin' : '8px'});
       $('.LoginButton').css({'margin-right' : '8px'});
+      $('.SignOutButton').css({'margin-right' : '8px'});
      }else{
       $('.mainNav').css({'padding' : '28px'});
       $('.myLogo').css({'height': '80px', 'width' : '80px', 'margin-left' : '10px'});

@@ -51,6 +51,11 @@ body {
 	transition: 0.4s;
 }
 
+.SignOutButton {
+	margin-right: 15px;
+	transition: 0.4s;
+}
+
 .myLogo {
 	width: 80px;
 	height: 80px;

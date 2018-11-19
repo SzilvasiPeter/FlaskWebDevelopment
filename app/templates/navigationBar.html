@@ -91,6 +91,10 @@
 						{{ form1.password(class="form-control form-control-lg") }}
 					{% endif %}
 				</div>
+				<div class="form-check">
+					{{ form1.remember(class="form-check-input", type="checkbox", id="RememberMe") }}
+					{{ form1.remember.label(class="form-check-label", for="RememberMe")}}
+				</div>
 			</fieldset>
 			<div class="form-group">
 				<button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Close</button>

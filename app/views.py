@@ -1,11 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request
-from app import app
+from app import app, db, bcrypt
 from app.forms import RegistrationForm, LoginForm
 from app.models import User, Post
-
-# from validate_email import validate_email
-import re
-import sys
+from flask_login import login_user, current_user
 
 posts = [
 	{
@@ -25,18 +22,19 @@ posts = [
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+	if current_user.is_authenticated:
+		return redirect(url_for('/'))
 	form1 = LoginForm()
 	if request.method == "POST":
 		if form1.validate():
-			if form1.email.data == 'admin@gmail.com' and form1.password.data == 'password':
-				flash('You have been logged in!', 'success')
-				return render_template('mainPage.html', form1=form1)
+			user  = User.query.filter_by(email=form1.email.data).first()
+			if user and bcrypt.check_password_hash(user.password, form1.password.data):
+				login_user(user, remember=form1.remember.data)
+				return redirect(url_for('/index'))
 			else:
 				flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
-				return render_template('mainPage.html', form1=form1)
 		else:
 			flash('Invalid Inputs. Please fill valid email and password', 'warning')
-			return render_template('mainPage.html', form1=form1)
 		
 	return render_template('mainPage.html', form1=form1)
 
@@ -54,15 +52,14 @@ def blog_about():
 
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
+	if current_user.is_authenticated:
+		return redirect(url_for('/'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		flash(f'Account created for {form.username.data}!', 'success')
+		hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+		user = User(username=form.username.data, email=form.email.data, password=hashed_pw)
+		db.session.add(user)
+		db.session.commit()
+		flash('Your account has been created! You are now able to log in', 'success')
 		return redirect(url_for('index'))
 	return render_template('register.html', title='Register', form=form)
-
-
-def is_email_valid(email):
-    """Validate the email address using a regex."""
-    if not re.match("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", email):
-        return False
-    return True

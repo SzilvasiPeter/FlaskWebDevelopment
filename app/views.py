@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from app import app
 from app.forms import RegistrationForm, LoginForm
 from app.models import User, Post
@@ -26,15 +26,19 @@ posts = [
 @app.route('/index', methods=['GET', 'POST'])
 def index():
 	form1 = LoginForm()
-	if form1.validate_on_submit():
-		if (form1.email.data == 'admin@gmail.com' and is_email_valid(form1.email.data) and form1.password.data == 'password'):
-			flash('You have been logged in!', 'success')
-			return render_template('mainPage.html', form1=form1)
+	if request.method == "POST":
+		if form1.validate():
+			if form1.email.data == 'admin@gmail.com' and form1.password.data == 'password':
+				flash('You have been logged in!', 'success')
+				return render_template('mainPage.html', form1=form1)
+			else:
+				flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
+				return render_template('mainPage.html', form1=form1)
 		else:
-			flash('Login Unsuccessfull. Please check username and password', 'danger')
+			flash('Invalid Inputs. Please fill valid email and password', 'warning')
 			return render_template('mainPage.html', form1=form1)
+		
 	return render_template('mainPage.html', form1=form1)
-	# return render_template("mainPage.html")
 
 @app.route('/dashboard/')
 def dashboard():

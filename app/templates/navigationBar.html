@@ -62,7 +62,7 @@
 		    <div class="modal-content">
 		      <div class="modal-body">
 		        <form method="POST" action="">
-			{{ form1.hidden_tag() }}
+				{{ form1.hidden_tag() }}
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Sign In</legend>
 				<div class="form-group">
@@ -93,10 +93,8 @@
 				</div>
 			</fieldset>
 			<div class="form-group">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-			<div class="form-group">
-				{{ form1.submit(class="btn btn-outline-info submitAction")}}
+				<button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Close</button>
+				{{ form1.submit(class="btn btn-outline-info float-right submitAction")}}
 			</div>
 		</form>
 		      </div>

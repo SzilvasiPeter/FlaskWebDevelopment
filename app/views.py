@@ -71,3 +71,7 @@ def logout():
 @login_required
 def account():
 	return render_template('account.html', title='Account')
+
+@app.route('/pricing')
+def pricing():
+	return render_template('pricing.html', title='Pricing')

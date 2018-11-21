@@ -42,7 +42,9 @@ body {
 }
 
 .nav-link {
-	margin: 15px;
+	margin-right: 40px;
+	margin-left: 40px;
+	padding: 10px;
 	transition: 0.4s;
 }
 
@@ -61,6 +63,7 @@ body {
 	height: 80px;
 	margin-left: 10px;
 	transition: 0.4s;
+	position: static;
 }
 
 .mainNav {

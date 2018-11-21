@@ -12,9 +12,15 @@
      }else{
       $('.mainNav').css({'padding' : '28px'});
       $('.myLogo').css({'height': '80px', 'width' : '80px', 'margin-left' : '10px'});
-      $('.nav-link').css({'margin' : '15px'});
+      $('.nav-link').css({'margin-left' : '40px', 'margin-right' : '40px'});
      }
    });
+
+  $('a.pricingLink').click(function () {
+        $('.overlay, .popup').toggle('fast');
+        $('.overlay, .popup').fadeOut(1400)
+        return false;
+      });
 
   // var email = $('#email').val();
   // var password = $('#password').val();

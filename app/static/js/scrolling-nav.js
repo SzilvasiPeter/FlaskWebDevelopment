@@ -18,9 +18,18 @@
 
   $('a.pricingLink').click(function () {
         $('.overlay, .popup').toggle('fast');
-        $('.overlay, .popup').fadeOut(1400)
+        $('.overlay, .popup').fadeOut(1400);
         return false;
       });
+
+  $('.ShowEdit').click(function(){
+      $('.UpdateForm').show(500);
+      $('.ShowEdit').hide(500);
+  });
+  $('.UpdateButton').click(function(){
+      $('.UpdateForm').hide(1000);
+      $('.ShowEdit').show(1000);
+  });
 
   // var email = $('#email').val();
   // var password = $('#password').val();

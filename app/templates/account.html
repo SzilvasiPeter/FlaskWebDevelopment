@@ -10,6 +10,8 @@
 			      <p class="text-secondary">{{ current_user.email }}</p>
 			    </div>
 			  </div>
+			  <button class="btn btn-outline-info px-3 ml-3 ShowEdit">Edit Profile</button>
+			  <div class="container UpdateForm">
 			  <form method="POST" action="">
 			{{ form.hidden_tag() }}
 			<fieldset class="form-group">
@@ -43,9 +45,10 @@
 				</div>
 			</fieldset>
 			<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info")}}
+				{{ form.submit(class="btn btn-outline-info UpdateButton")}}
 			</div>
 		</form>
+	</div>
 			</div>
 		</div>
 	</div>

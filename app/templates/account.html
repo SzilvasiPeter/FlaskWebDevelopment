@@ -12,7 +12,7 @@
 			  </div>
 			  <button class="btn btn-outline-info px-3 ml-3 ShowEdit">Edit Profile</button>
 			  <div class="container UpdateForm">
-			  <form method="POST" action="">
+			  <form method="POST" action="" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Account Info</legend>
@@ -43,9 +43,22 @@
 						{{ form.email(class="form-control form-control-lg") }}
 					{% endif %}
 				</div>
+				<div class="form-group">
+					{{ form.picture.label() }}
+					{{ form.picture(class="form-control-file") }}
+					{% if form.picture.errors %}
+						{% for error in form.picture.errors %}
+							<span class="text-danger"> {{ error }} </span><br>
+						{% endfor %}
+					{% endif %}
+				</div>
 			</fieldset>
 			<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info UpdateButton")}}
+				{% if form.username.errors %}
+					{{ form.submit(class="btn btn-outline-info")}}
+				{% else %}
+					{{ form.submit(class="btn btn-outline-info UpdateButton")}}
+				{% endif %}
 			</div>
 		</form>
 	</div>

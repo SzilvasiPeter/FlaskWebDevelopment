@@ -80,3 +80,7 @@ body {
 .UpdateForm {
 	display: none;
 }
+
+.ShowEdit {
+	margin-left: 65px;
+}

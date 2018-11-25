@@ -4,13 +4,13 @@
 		<div class="jumbotron">
 			<div class="content-section">
 			  <div class="media">
-			    <img class="rounded-circle account-img" src="{{ image_file }}">
+			    <img class="rounded-circle account-img mb-4" src="{{ image_file }}">
 			    <div class="media-body m-5">
 			      <h2 class="account-heading">{{ current_user.username }}</h2>
 			      <p class="text-secondary">{{ current_user.email }}</p>
 			    </div>
 			  </div>
-			  <button class="btn btn-outline-info px-3 ml-3 ShowEdit">Edit Profile</button>
+			  <button class="btn btn-outline-info px-3 ShowEdit">Edit Profile</button>
 			  <div class="container UpdateForm">
 			  <form method="POST" action="" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
@@ -54,7 +54,7 @@
 				</div>
 			</fieldset>
 			<div class="form-group">
-				{% if form.username.errors %}
+				{% if form.username.errors or form.email.errors %}
 					{{ form.submit(class="btn btn-outline-info")}}
 				{% else %}
 					{{ form.submit(class="btn btn-outline-info UpdateButton")}}

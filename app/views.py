@@ -3,24 +3,9 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from app import app, db, bcrypt
-from app.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-
-posts = [
-	{
-		'author': 'Szilvasi Peter',
-		'title': 'Blog Post1',
-		'content': 'First post content',
-		'date_posted': '2018.10.25'
-	},
-	{
-		'author': 'John Doe',
-		'title': 'Blog Post 2',
-		'content': 'Second post content',
-		'date_posted': '2018.10.26'
-	}
-]
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -47,6 +32,7 @@ def dashboard():
 
 @app.route('/blog/')
 def blog():
+	posts = Post.query.all()
 	return render_template("blog.html", posts=posts, title="Blog")
 
 @app.route('/blog/about/')
@@ -78,7 +64,8 @@ def save_picture(form_picture):
 	
 	output_size = (250, 250)
 	i = Image.open(form_picture)
-	width, height = i.size
+	width, height = i.size # 500x333
+	# For other picture maybe resize
 	cropped_image = i.crop((70, 0, width - 70, height))
 	cropped_image.thumbnail(output_size)
 	cropped_image.save(picture_path)
@@ -113,3 +100,15 @@ def account():
 @app.route('/pricing')
 def pricing():
 	return render_template('pricing.html', title='Pricing')
+
+@app.route('/blogpost/new', methods=['GET', 'POST'])
+@login_required
+def new_blog_post():
+	form = PostForm()
+	if form.validate_on_submit():
+		post = Post(title=form.title.data, content=form.content.data, author=current_user)
+		db.session.add(post)
+		db.session.commit()
+		flash('Your Post has been Created', 'success')
+		return redirect(url_for('blog'))
+	return render_template('create_blog_post.html', title='New Post', form=form)

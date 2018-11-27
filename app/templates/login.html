@@ -1,4 +1,4 @@
-{% extends "navigationBar.html" %}
+{% extends "layout.html" %}
 {% block content %}
 <div class="container center_div">
 	<div class="jumbotron">
@@ -32,16 +32,15 @@
 						{{ form.password(class="form-control form-control-lg") }}
 					{% endif %}
 				</div>
+				<div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
 			</fieldset>
 			<div class="form-group">
 				{{ form.submit(class="btn btn-outline-info")}}
 			</div>
 		</form>
 	</div>
-	<!-- <div class="border-top pt-3">
-		<small class="text-muted">
-			Already Have An Account? <a class="ml-2" href="{{ url_for('login')}}"> Sign in </a>
-		</small>
-	</div> -->
 </div>
 {% endblock content %}

@@ -13,3 +13,24 @@ login_manager.login_view = 'index'
 login_manager.login_message_category = 'info'
 
 from app import views
+
+# Load data from json
+
+# from app.models import Post 
+# import json
+
+# with open('post.json') as f:
+# 	data = f.read()
+# 	jsondata = json.loads(data)
+# 	for item in jsondata:
+# 		post = Post(title=item['title'], content=item['content'], user_id=int(item['user_id']))
+# 		db.session.add(post)
+# 	db.session.commit()
+
+# Delete table's content
+
+# conn = sqlite3.connect('./site.db')
+# cur = conn.cursor()
+# sql = "DELETE FROM post"
+# cur.execute(sql)
+# conn.commit()

@@ -26,19 +26,16 @@ def index():
 		
 	return render_template('mainPage.html', form1=form1)
 
-@app.route('/dashboard/')
-def dashboard():
-	return render_template("dashboard.html")
-
 @app.route('/blog/')
 def blog():
+	flash('endpoint: ' + request.endpoint + 'base_url: ' + request.base_url + 'Url rule: ' + request.url_rule.rule, 'info')
 	page = request.args.get('page', 1, type=int)
 	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=8)
-	return render_template("blog.html", posts=posts)
+	return render_template('blog.html', posts=posts)
 
 @app.route('/blog/about/')
 def blog_about():
-	return render_template("blogAbout.html", title="About")
+	return render_template('blogAbout.html', title='About')
 
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
@@ -70,7 +67,10 @@ def login():
 @app.route('/logout')
 def logout():
 	logout_user()
-	return redirect(url_for('index'))
+	if request.path == 'blog':
+		return redirect(url_for('blog'))
+	else:
+		return redirect(url_for('index'))
 
 def save_picture(form_picture):
 	#random_hex = secrets.token_hex(8)

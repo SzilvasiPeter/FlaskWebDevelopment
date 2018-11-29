@@ -32,7 +32,8 @@ def dashboard():
 
 @app.route('/blog/')
 def blog():
-	posts = Post.query.all()
+	page = request.args.get('page', 1, type=int)
+	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=8)
 	return render_template("blog.html", posts=posts)
 
 @app.route('/blog/about/')
@@ -161,3 +162,13 @@ def delete_post(post_id):
 	db.session.commit()
 	flash('Your post has been deleted', 'success')
 	return redirect(url_for('blog'))
+
+@app.route('/user/<string:username>')
+def user_posts(username):
+	page = request.args.get('page', 1, type=int)
+	user = User.query.filter_by(username=username).first_or_404()
+	posts = Post.query\
+		.filter_by(author=user)\
+		.order_by(Post.date_posted.desc())\
+		.paginate(page=page, per_page=4)
+	return render_template("user_posts.html", posts=posts, user=user)

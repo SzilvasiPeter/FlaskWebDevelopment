@@ -1,5 +1,6 @@
 import os
 import secrets
+from urllib.parse import urlparse, urlsplit
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
@@ -28,7 +29,6 @@ def index():
 
 @app.route('/blog/')
 def blog():
-	flash('endpoint: ' + request.endpoint + 'base_url: ' + request.base_url + 'Url rule: ' + request.url_rule.rule, 'info')
 	page = request.args.get('page', 1, type=int)
 	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=8)
 	return render_template('blog.html', posts=posts)
@@ -67,10 +67,12 @@ def login():
 @app.route('/logout')
 def logout():
 	logout_user()
-	if request.path == 'blog':
-		return redirect(url_for('blog'))
-	else:
-		return redirect(url_for('index'))
+	return redirect(url_for('index'))
+
+@app.route('/logoutAtBlog')
+def logoutAtBlog():
+	logout_user()
+	return redirect(url_for('blog'))
 
 def save_picture(form_picture):
 	#random_hex = secrets.token_hex(8)

@@ -14,8 +14,13 @@
     bottom: auto;
 }
 
+.bg-darkgray {
+    background-color: #2f4f4f;
+}
+
 .caption-text {
     font-weight: 100;
+    color: #ffffff;
     font-family: Gill Sans Extrabold, sans-serif;
     font-style: oblique 10deg;
     opacity: 0.8;

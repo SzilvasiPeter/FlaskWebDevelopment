@@ -12,18 +12,18 @@ from flask_mail import Message
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-	if current_user.is_authenticated:
-		return redirect(url_for('index'))
+	#if current_user.is_authenticated:
+	#	return redirect(url_for('index')) # This broke the code somehow
 	form1 = LoginForm()
 	if request.method == "POST":
 		if form1.validate():
-			user  = User.query.filter_by(email=form1.email.data).first()
+			user = User.query.filter_by(email=form1.email.data).first()
 			if user and bcrypt.check_password_hash(user.password, form1.password.data):
 				flash('Login is successfull.', 'success')
 				login_user(user, remember=form1.remember.data)
-				# next_page = request.args.get('next')
+				next_page = request.args.get('next')
 				#return redirect(url_for('index') 
-				#return redirect(next_page) if next_page else redirect(url_for('index')) # This broke the code somehow
+				return redirect(next_page) if next_page else redirect(url_for('index'))
 			else:
 				flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
 		else:

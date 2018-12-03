@@ -27,7 +27,7 @@
 }
 
 .how-section1{
-    margin-top: 15px;
+    margin-top: -10%;
     padding: 10%;
 }
 .how-section1 h4{
@@ -49,4 +49,8 @@
 }
 .how-img img{
     width: 40%;
+}
+.how-text {
+    padding: 5%;
+    background-color: #ffffff;
 }

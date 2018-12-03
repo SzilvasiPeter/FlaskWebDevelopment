@@ -21,8 +21,9 @@ def index():
 			if user and bcrypt.check_password_hash(user.password, form1.password.data):
 				flash('Login is successfull.', 'success')
 				login_user(user, remember=form1.remember.data)
-				next_page = request.args.get('next')
-				return redirect(next_page) if next_page else redirect(url_for('index'))
+				# next_page = request.args.get('next')
+				#return redirect(url_for('index') 
+				#return redirect(next_page) if next_page else redirect(url_for('index')) # This broke the code somehow
 			else:
 				flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
 		else:

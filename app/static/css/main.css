@@ -10,22 +10,33 @@
 }*/
 
 body {
-  padding: 130px 0px 0px 0px;
+	background: #fafafa;
+  	color: #333333;
+  	padding: 130px 0px 0px 0px;
+}
+
+.bg-steel {
+  background-color: #5f788a;
 }
 
 .nav-link {
+	color: #cbd5db;
 	margin-right: 40px;
 	margin-left: 40px;
 	padding: 10px;
 	transition: 0.4s;
 }
 
-.LoginButton {
-	margin-right: 15px;
-	transition: 0.4s;
+.nav-link:hover {
+  color: #ffffff;
 }
 
-.SignOutButton {
+.nav-link.active {
+  font-weight: 500;
+}
+
+.SignInOutButton {
+	color: #cbd5db;
 	margin-right: 15px;
 	transition: 0.4s;
 }
@@ -40,7 +51,6 @@ body {
 
 .mainNav {
   overflow: hidden;
-  background-color: #f1f1f1;
   padding: 28px;
   transition: 0.4s;
   position: fixed;

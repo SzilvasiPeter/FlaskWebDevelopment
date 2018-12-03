@@ -9,12 +9,7 @@ from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
-def index():
-	#if current_user.is_authenticated:
-	#	return redirect(url_for('index')) # This broke the code somehow
-	form1 = LoginForm()
+def indexLogin(form1):
 	if request.method == "POST":
 		if form1.validate():
 			user = User.query.filter_by(email=form1.email.data).first()
@@ -28,18 +23,33 @@ def index():
 				flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
 		else:
 			flash('Invalid Inputs. Please fill valid email and password', 'warning')
-		
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+def index():
+	#if current_user.is_authenticated:
+	#	return redirect(url_for('index')) # This broke the code somehow
+	form1 = LoginForm()
+	indexLogin(form1)
 	return render_template('mainPage.html', form1=form1)
+
+@app.route('/about/')
+def about():
+	form1 = LoginForm()
+	indexLogin(form1)
+	return render_template('about.html', title='About', form1=form1)
+
+@app.route('/features/')
+def features():
+	form1 = LoginForm()
+	indexLogin(form1)
+	return render_template('features.html', title='Features', form1=form1)
 
 @app.route('/blog/')
 def blog():
 	page = request.args.get('page', 1, type=int)
 	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=8)
 	return render_template('blog.html', posts=posts)
-
-@app.route('/blog/about/')
-def blog_about():
-	return render_template('blogAbout.html', title='About')
 
 @app.route('/register/', methods=['GET', 'POST'])
 def register():

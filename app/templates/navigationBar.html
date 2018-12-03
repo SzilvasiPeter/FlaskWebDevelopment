@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	{% block head %}
 	<meta charset="utf-8">
 	{% if title %}
 		<title>Diet Balancer -  {{ title }}</title>
@@ -10,10 +11,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
 <!-- 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
 	<link rel="shortcut icon" href="{{ url_for('static', filename='images/balancer.png') }}">
+	{% endblock head %}
+</head>
 <header>
     <nav class="mainNav navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <a class="navbar-brand" href="/"><img class="myLogo" src="{{ url_for('static', filename='images/balancer.png') }}"></a>

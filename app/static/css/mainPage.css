@@ -1,0 +1,52 @@
+.carousel-item img {
+    width: auto;
+    height: 500px;
+    max-height: 500px;
+}
+
+.caption-top {
+    top: 25px;
+    bottom: auto;
+}
+
+.caption-mid {
+    top: 175px;
+    bottom: auto;
+}
+
+.caption-text {
+    font-weight: 100;
+    font-family: Gill Sans Extrabold, sans-serif;
+    font-style: oblique 10deg;
+    opacity: 0.8;
+}
+
+.carousel-caption h1 {
+    border-radius: 60px;
+    /*opacity: 0.4;*/
+}
+
+.how-section1{
+    margin-top: 15px;
+    padding: 10%;
+}
+.how-section1 h4{
+    color: #ffa500;
+    font-weight: bold;
+    font-size: 30px;
+}
+.how-section1 .subheading{
+    color: #3931af;
+    font-size: 20px;
+}
+.how-section1 .row
+{
+    margin-top: 10%;
+}
+.how-img 
+{
+    text-align: center;
+}
+.how-img img{
+    width: 40%;
+}

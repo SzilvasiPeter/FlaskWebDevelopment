@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+<head>
+	<meta charset="utf-8">
+	{% if title %}
+		<title>Diet Balancer -  {{ title }}</title>
+	{% else %}
+		<title>Diet Balancer</title>
+	{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+<!-- 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/balancer.png') }}">
+</head>
+{% endblock head %}
+<header>
+    <nav class="mainNav navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
+    <a class="navbar-brand" href="/"><img class="myLogo" src="{{ url_for('static', filename='images/balancer.png') }}"></a>
+    </button>
+
+      <div class="nav navbar-nav navbar-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main.index') }}">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('posts.blog') }}">Blog</a>
+        </li>
+      </div>
+</nav>
+
+</header>
+<body>
+  {% block content %}{% endblock %}
+    <!-- Custom JavaScript for this theme -->
+	<script src="{{ url_for('static', filename='js/scrolling-nav.js') }}"></script>
+
+</body>
+
+</html>

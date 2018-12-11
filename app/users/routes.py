@@ -19,7 +19,7 @@ def register():
 		db.session.commit()
 		flash('Your account has been created! You are now able to log in', 'success')
 		return redirect(url_for('main.index'))
-	return render_template('register.html', title='Register', form=form)
+	return render_template('blog/register.html', title='Register', form=form)
 
 @users.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -36,7 +36,7 @@ def login():
 			return redirect(next_page) if next_page else redirect(url_for('posts.blog'))
 		else:
 			flash('Login Unsuccessfull. Your email or password is wrong', 'danger')
-	return render_template('login.html', title='Login', form=form)
+	return render_template('blog/login.html', title='Login', form=form)
 
 @users.route('/logoutAtBlog')
 def logoutAtBlog():
@@ -66,7 +66,7 @@ def account():
 		flash('Edit was Unsuccessfull', 'danger')
 
 	image_file = url_for('static', filename='profile_pics/' + current_user.image_file) 
-	return render_template('account.html', title='Account', image_file=image_file, form=form)
+	return render_template('main/account.html', title='Account', image_file=image_file, form=form)
 
 @users.route('/user/<string:username>')
 def user_posts(username):
@@ -76,7 +76,7 @@ def user_posts(username):
 		.filter_by(author=user)\
 		.order_by(Post.date_posted.desc())\
 		.paginate(page=page, per_page=4)
-	return render_template('user_posts.html', posts=posts, user=user)
+	return render_template('blog/user_posts.html', posts=posts, user=user)
 
 @users.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
@@ -88,7 +88,7 @@ def reset_request():
 		send_reset_email(user)
 		flash('An email has been sent with instructions to reset your password.', 'info')
 		return redirect(url_for('users.login'))
-	return render_template('reset_request.html', title='Reset Password', form=form) 
+	return render_template('blog/reset_request.html', title='Reset Password', form=form) 
 
 @users.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
@@ -105,4 +105,4 @@ def reset_token(token):
 		db.session.commit()
 		flash('Your password has been updated! You are now able to log in', 'success')
 		return redirect(url_for('users.login'))
-	return render_template('reset_token.html', title='Reset Password', form=form)
+	return render_template('blog/reset_token.html', title='Reset Password', form=form)

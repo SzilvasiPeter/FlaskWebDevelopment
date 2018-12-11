@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "blog/layout.html" %}
 {% block content %}
 	<h1 class="mb-3">Post by {{ user.username }} ({{ posts.total }})</h1>
 	{% for post in posts.items %}

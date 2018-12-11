@@ -1,4 +1,4 @@
-#!flask/bin/python3
+#!flask/bin/python3 -B
 from app import create_app
 
 app = create_app()

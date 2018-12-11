@@ -32,17 +32,23 @@
         <li class="nav-item">
 	     	<a class="nav-link" href="{{ url_for('main.pricing') }}">Pricing</a>
 	    </li>
+	    <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('diary.diet') }}">Diary</a>
+        </li>
         {% else %}
         <li class="nav-item">
 	     	<a class="nav-link pricingLink" href="{{ url_for('main.pricing') }}">Pricing</a>
-	     	<div class="invalid-feedback popup overlay">
+	     	<div class="invalid-feedback pricingPopup">
+				<span>You have to Sign In First</span>
+			</div>
+        </li>
+        <li class="nav-item">
+	     	<a class="nav-link aboutLink" href="{{ url_for('diary.diet') }}">Diary</a>
+	     	<div class="invalid-feedback aboutPopup">
 				<span>You have to Sign In First</span>
 			</div>
         </li>
         {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('posts.blog') }}">Blog</a>
         </li>

@@ -17,8 +17,14 @@
    });
 
   $('a.pricingLink').click(function () {
-        $('.overlay, .popup').toggle('fast');
-        $('.overlay, .popup').fadeOut(1400);
+        $('.overlay, .pricingPopup').toggle('fast');
+        $('.overlay, .pricingPopup').fadeOut(1400);
+        return false;
+      });
+
+  $('a.aboutLink').click(function () {
+        $('.aboutPopup').toggle('fast');
+        $('.aboutPopup').fadeOut(1400);
         return false;
       });
 
